@@ -2,14 +2,14 @@
 <img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Github-512.png">
 </p>
 
-## toggle window title bar on windows
+## auto hot key toggle window titlebar
 ```autohotkey
-WinSet, Style, -0xC00000, A
+WinSet, Style, ^0xC00000, A
 ```
 
 ## plink for ssh sach
 
-## toggle windows theme with a powershell one liner
+## powershell one liner toggle windows theme
 ```powershell
 reg query "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize"  /v SystemUsesLightTheme | 
 Select-Object -first 3 | 
