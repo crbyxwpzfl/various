@@ -2,7 +2,10 @@
 <img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Github-512.png">
 </p>
 
-## hidetitle bar of a windows window
+## toggle window title bar on windows
+```autohotkey
+WinSet, Style, -0xC00000, A
+```
 
 ## plink for ssh sach
 
