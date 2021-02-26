@@ -2,7 +2,7 @@
 <img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Github-512.png">
 </p>
 
-## auto hot key toggle window titlebar
+## autohotkey toggle window titlebar
 ```autohotkey
 WinSet, Style, ^0xC00000, A
 ```
