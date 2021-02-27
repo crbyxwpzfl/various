@@ -1,13 +1,18 @@
-<p align="center">
-<img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Github-512.png">
-</p>
-
 ## autohotkey toggle window titlebar
 ```autohotkey
 WinSet, Style, ^0xC00000, A
 ```
 
 ## plink for ssh sach
+
+## windows registry titlebar size
+`HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics`
+__deafults__ 
+   CaptionHeigt deafult -330
+	CaptionWidth deafult -330
+	ScrollHeigt deafult -255
+	ScrollWidth deafult -255
+   PaddedBorder deafult -60
 
 ## powershell one liner toggle windows theme
 ```powershell
