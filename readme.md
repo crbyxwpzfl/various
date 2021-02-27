@@ -6,7 +6,7 @@ WinSet, Style, ^0xC00000, A
 ## plink for ssh sach
 
 ## windows registry custom desktop context menu
-add key `HKEY_CLASSES_ROOT\Directory\Background\shell\name-in-menu\command`
+add key `HKEY_CLASSES_ROOT\Directory\Background\shell\name-in-menu\command`<br>
 edit value of key (Default) to `path\to\executable`
 
 ## windows explorer add files into strart menu
