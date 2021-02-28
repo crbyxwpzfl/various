@@ -39,7 +39,7 @@ edit value for key `{B7BEDE81-DF94-4682-A7D8-57A52620B86F}`
 `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services`<br>
 get name of service by opening properties
 
-## windows registry remove ghost from task man startup list
+## windows registry remove ghosts from task man startup list
 `Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`
 
 ## windows registry titlebar size
