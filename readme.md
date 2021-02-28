@@ -1,4 +1,6 @@
 
+different txt here to create a problem
+
 an other line pre pended
 
 ADDED AN OTHER LINE
