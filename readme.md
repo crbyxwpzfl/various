@@ -1,4 +1,6 @@
 
+test vim diff
+
 test vimdiff
 
 ADDED A LINE
