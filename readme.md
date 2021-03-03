@@ -1,12 +1,5 @@
 
-test vim diff
-sadfdsaf
-
-
-
-
-
-asdf
+ganz was anderes an der stelle weil ich will confilct
 
 asdf
 
