@@ -1,12 +1,19 @@
 
 test vim diff
+sadfdsaf
+
+
+
+
+
+asdf
+
+asdf
 
 test vimdiff if th econflict below wasnt actually a conflict
-this perhaps is
 
 here is a conflict for merging
 
-ADDED A LINE
 
 ## powershell one liner toggle windows theme
 ```powershell
