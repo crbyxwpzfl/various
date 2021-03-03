@@ -5,8 +5,11 @@ asdf
 
 test v kiene ahnung aber knoflict halt imdiff if th econflict below wasnt actually a conflict
 
-here is a conflict for merging
+test vimsadfsadfdiff if th econflict below wasnt actually a conflict
 
+asdfsadfhere is a conflict for merging
+sdasdf
+asdf
 
 ## powershell one liner toggle windows theme
 ```powershell
