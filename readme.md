@@ -4,8 +4,13 @@ ganz was anderes an der stelle weil ich will confilct
 asdf
 
 test vimsadfsadfdiff if th econflict below wasnt actually a conflict
+iasdfsa
 
-asdfsadfhere is a conflict for merging
+
+
+asdfdsaf
+
+why cant i have a clean conflictis a conflict for merging
 sdasdf
 asdf
 
