@@ -6,8 +6,13 @@ asdf
 test v kiene ahnung aber knoflict halt imdiff if th econflict below wasnt actually a conflict
 
 test vimsadfsadfdiff if th econflict below wasnt actually a conflict
+iasdfsa
 
-asdfsadfhere is a conflict for merging
+
+
+asdfdsaf
+
+why cant i have a clean conflictis a conflict for merging
 sdasdf
 i want a conflicht herhe maaaan asdf
 
