@@ -1,18 +1,4 @@
-
-ganz was anderes an der stelle weil ich will confilct
-
-asdf
-
-test vimsadfsadfdiff if th econflict below wasnt actually a conflict
-iasdfsa
-
-
-
-asdfdsaf
-
-why cant i have a clean conflictis a conflict for merging
-sdasdf
-asdf
+conflict in deiser zeile
 
 ## powershell one liner toggle windows theme
 ```powershell
