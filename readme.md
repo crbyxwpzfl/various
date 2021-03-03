@@ -9,7 +9,7 @@ test vimsadfsadfdiff if th econflict below wasnt actually a conflict
 
 asdfsadfhere is a conflict for merging
 sdasdf
-asdf
+i want a conflicht herhe maaaan asdf
 
 ## powershell one liner toggle windows theme
 ```powershell
