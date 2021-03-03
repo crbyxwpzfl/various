@@ -2,6 +2,10 @@
 test vim diff
 
 test vimdiff
+test vimdiff if th econflict below wasnt actually a conflict
+this perhaps is
+
+here is a conflict for merging
 
 ADDED A LINE
 
