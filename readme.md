@@ -3,10 +3,11 @@ ganz was anderes an der stelle weil ich will confilct
 
 asdf
 
-test vimdiff if th econflict below wasnt actually a conflict
+test vimsadfsadfdiff if th econflict below wasnt actually a conflict
 
-here is a conflict for merging
-
+asdfsadfhere is a conflict for merging
+sdasdf
+asdf
 
 ## powershell one liner toggle windows theme
 ```powershell
