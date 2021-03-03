@@ -1,9 +1,9 @@
 
 ganz was anderes an der stelle weil ich will confilct
-
+kkksdaf
 asdf
 
-test vimdiff if th econflict below wasnt actually a conflict
+test v kiene ahnung aber knoflict halt imdiff if th econflict below wasnt actually a conflict
 
 here is a conflict for merging
 
