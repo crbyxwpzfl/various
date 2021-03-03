@@ -1,20 +1,4 @@
-
-ganz was anderes an der stelle weil ich will confilct
-kkksdaf
-asdf
-
-test v kiene ahnung aber knoflict halt imdiff if th econflict below wasnt actually a conflict
-
-test vimsadfsadfdiff if th econflict below wasnt actually a conflict
-iasdfsa
-
-
-
-asdfdsaf
-
-why cant i have a clean conflictis a conflict for merging
-sdasdf
-i want a conflicht herhe maaaan asdf
+hier ein conflict mit deiser  licht anderen zeile das ist local file
 
 ## powershell one liner toggle windows theme
 ```powershell
