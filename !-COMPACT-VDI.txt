@@ -1,0 +1,10 @@
+COMPACT BIGSUR VDI
+	1. run this in terminal of virtual bigSur but change bs (blocksize in bits) and count (anzahl der zu schreibenden blöcke) to specify the amount of free space you want to Release
+		dd if=/dev/zero of=file.of.zeros bs=67108864 count=1250
+	2. shutdown the vm
+	3. run this in comand promt
+		VBoxManage modifymedium --compact "path\to\bigSur.vdi"
+	(4. leave files.of.zero to prevent bigsur to reclaim the space)
+
+This comment was very helpful for me.
+https://discussions.apple.com/thread/250795166?answerId=251571051022#251571051022

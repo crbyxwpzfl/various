@@ -1,0 +1,11 @@
+Allow scripts to run in powersehell for current user
+	Set-ExecutionPolicy -Scope CurrentUser remotesigned
+
+See execution policys
+	Get-ExecutionPolicy -List
+
+Revert to origninal policys
+	Set-ExecutionPolicy -Scope CurrentUser Restricted
+
+measure script time
+	Measure-Command { .\do_something.ps1 | Out-Default }

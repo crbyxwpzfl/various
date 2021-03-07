@@ -1,0 +1,29 @@
+TV API
+https://gist.github.com/marcelrv/ee9a7cf97c227d069e4ee88d26691019
+
+
+PLATZHALTER
+<TV-IP> 192.168.xxx.xx aus einstellungen
+
+ambilight an/aus
+curl -v -s -X POST -d "{"power":"On"}" http://192.168.xxx.xx:1925/6/ambilight/power
+
+
+ambilight/currentconfiguration -d "{"styleName": "FOLLOW_COLOR", "isExpert": "true", "algorithm": "MANUAL_HUE", "colorSettings": { "color": { }, "colorDelta": { "hue": 180, "saturation": 50, "brightness": 50},"speed": 255}"
+
+
+curl -X POST http://192.168.xxx.xx:1925/6/ambilight/cached -d "{"r": 100, "g": 210, "b": 30}"
+
+ambilight/lounge -d "{"color":{"hue":155,"saturation":240,"brightness":180},"colordelta":{"hue":20,"saturation":25,"brightness":100},"speed":255,"mode":"Default"}"
+
+ambilight/currentconfiguration -d "{"styleName": "FOLLOW_COLOR", "isExpert": "false", "menuSetting": "FRESH_NATURE", "stringValue": "Fresh Nature"}"
+
+
+curl -X GET http://192.168.xxx.xx:1925/6/ambilight/power
+
+python3 pylips.py --host %TV's_ip_address% --user %username% --pass %password% --command post --path menuitems/settings/current --body ^"{^"^"nodes^"^":[{^"^"nodeid^"^":2131230774}]}^"
+
+menuitems/settings/current -d "{"nodes":[{"nodeid":2131230774}]}"
+
+
+menuitems/settings/update -d "{"values":[{"value":{"Nodeid":2131230736, "data": {"selected_item":1}}}]}"

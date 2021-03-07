@@ -1,0 +1,31 @@
+ON WINDOWS
+downlad android sdk
+runn cmd/powershell in extracted location via shift right click
+
+ON TV
+android settings
+info
+click build 7 times
+back to android settings
+entwikler optionen
+usb debuging/wlan debugging on
+
+ON WINDOWS CMD
+.\adb connect ip:5555 or adb connect ip:5555 (connect to device 192.168.178.91:5555)
+
+ON TV 
+Accept popup
+
+WSL WINDOWS SUB UBUNTU
+sudo appt get adb
+
+OTHER COMMANDS WHILE IN CD/ EXTRACTED FOLDER 
+.\adb devices                                               (connected device list)
+.\adb shell input keyevent 24                               (vol up) / 25(vol down) / 26(on/off)
+.\adb shell dumpsys power                                   (info of tv)
+.\adb shell media volume --show --stream 3 --set 11         (set vol)
+.\adb shell media volume --stream 3 --get                   (get volume)
+.\adb shell input keyevent KEYCODE_F6                       (set input F6 atv F1 pc)
+.\adb kill-server                                           (kill server)
+.\adb start-server                                          (sart server)
+.\adb shell dumpsys power | grep "Display Power: state="    (get power state replace grep with find when run from WINDOWS)

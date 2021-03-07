@@ -1,4 +1,21 @@
-g
+## js alert vids
+```javascript
+javascript:( function(){
+	var arr = [], l = document.getElementsByTagName('source');
+	for(var i=0; i<l.length; i) { arr.push(l[i].src); }
+	alert(arr);
+} )();
+```
+
+## js alert links
+```javascript
+javascript:( function(){
+	var arr = [], l = document.links; 
+	for(var i=0; i<l.length; i) { arr.push(l[i].href); } 
+	alert(arr);
+} )();
+```
+
 ## js edit website
 ```javascript
 javascript:document.body.contentEditable = true; void 0;
@@ -103,3 +120,4 @@ get name of service by opening properties
 ## windows registry titlebar size
 `HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics`<br>
 deafults CaptionHeigt -330,CaptionWidth -330,ScrollHeigt -255,ScrollWidth -255,PaddedBorder -60
+
