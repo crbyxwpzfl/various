@@ -1,4 +1,60 @@
-hier ein conflict mit deiser  licht anderen zeile das ist local file
+g
+## js edit website
+```javascript
+javascript:document.body.contentEditable = true; void 0;
+```
+
+## js new tab with link
+```javascript
+javascript:( function(){ var a=window.open('about:blank').document; a.write('
+	<!DOCTYPE html>
+		<html>
+			<head><meta name="viewport" content="width=device-width" /></head>
+			<body><p><a href="https://google.com">CLICKABLETEXT</a></p></body>
+		</html>
+');a.close(); })();
+```
+
+## js show source code
+```javascript
+javascript:( function(){
+	var a=window.open('about:blank').document;
+	a.write('<title>Source of '+location.href+'</title><meta name="viewport" content="width=device-width">');
+	a.close();
+	var b=a.body.appendChild(a.createElement('pre'));
+	b.style.overflow='auto';
+	b.style.whiteSpace='pre-wrap';
+	b.appendChild(a.createTextNode(document.documentElement.innerHTML))
+} )();
+```
+
+## js for yt.com rotation-lock no-input-zoom p-in-p
+```javascript
+javascript:( function(){ 
+	var script = `window.addEventListener("orientationchange", function() {
+		if (window.orientation == 90) {
+			document.getElementsByTagName("ytd-app")[0].setAttribute( "style", "transform: rotate(-90deg); transform-origin: right top; width: 400px; zoom: 50%");
+			document.getElementsByTagName("html")[0].setAttribute("style", "font-size: 5px;font-family: Roboto, Arial, sans-serif;");
+		}; if (window.orientation == -90) {
+			document.getElementsByTagName("ytd-app")[0].setAttribute("style", "transform: rotate(90deg) translateY(-100000px); transform-origin: left top; width: 400px; zoom: 50%");
+			document.documentElement.scrollLeft = 0 + 100000;
+			document.getElementsByTagName("html")[0].setAttribute("style", "font-size: 5px;font-family: Roboto, Arial, sans-serif;");
+		}; if (window.orientation == 0) {
+			document.getElementsByTagName("ytd-app")[0].setAttribute("style", "zoom: 100%");
+			document.getElementsByTagName("html")[0].setAttribute("style", "font-size: 12px;font-family: Roboto, Arial, sans-serif;");
+		}
+	}); `;
+	var scriptsheet = document.createElement("script");
+	scriptsheet.innerText = script;
+	document.head.appendChild(scriptsheet);
+	
+	document.getElementsByTagName("Input")[0].setAttribute("style", "outline: none; font-size: 21px;");
+	
+	let v= document.querySelector('video');
+	v.addEventListener('webkitpresentationmodechanged',(e)=>e.stopPropagation(), true); 
+	setTimeout(()=>v.webkitSetPresentationMode('picture-in-picture'), 3000);completion()
+} )();
+```
 
 ## powershell one liner toggle windows theme
 ```powershell

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-hier ein conflict mit deiser  licht anderen zeile das ist local file
-=======
-conflict in deiser zeile
->>>>>>> 682e00b6b1d002c05997985c8236d73c4daff1f8
+hier ist was leicht anderss
 
 ## powershell one liner toggle windows theme
 ```powershell
