@@ -121,3 +121,8 @@ get name of service by opening properties
 `HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics`<br>
 deafults CaptionHeigt -330,CaptionWidth -330,ScrollHeigt -255,ScrollWidth -255,PaddedBorder -60
 
+
+## windows open edge minimal window
+```powershell
+cd "C:\Program Files (x86)\Microsoft\Edge\Application"; start msedge.exe --app=https://github.com/crbyxwpzfl
+```
