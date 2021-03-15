@@ -1,0 +1,60 @@
+get firefox form portableapps.com
+
+add .\FirefoxPortable\Data\profile\chrome\userChrome.css
+	
+	/*
+	* Do not remove the @namespace line -- it's required for correct functioning
+	*/
+	 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+	
+	/*
+	* Hide tab bar, navigation bar and scrollbars
+	* !important may be added to force override, but not necessary
+	* #content is not necessary to hide scroll bars
+	*/
+	
+	/*
+	* #TabsToolbar {visibility: collapse;}
+	* #navigator-toolbox {visibility: collapse;}
+	* browser {margin-right: -14px; margin-bottom: -14px;}
+	*/
+	
+	#navigator-toolbox {visibility: collapse;}
+
+in url bar about:config
+	find toolkit.legacyUserProfileCustomizations.stylesheets and set to true to load userChrome.css
+
+open firefox press Strg+Shift+i
+	right top ... go to settings 
+	check Enable browser and add-on debugging tollboxes
+	check enable remote debugging
+	then to live test userChrome.css press Strg+Shift+Alt+i
+
+shortcuts
+	History Strg+H
+	bookmar:\Users\roess\Desktop\nodejs-OLD
+
+other interessting sites
+	about:performance
+	about:support
+	about:preferences
+
+hide splash screen of portableapps
+	copy .\FirefoxPortable\Other\Source\FirefoxPortable.ini
+	to .\FirefoxPortable (same as firefoxPorable.exe) 
+	edit DisableSplashScreen=true
+	about:profiles
+
+in privacy settings
+	custom all cookies blocked
+	cookies and site data manage exeptions and add login sites to keep login
+	history settings for clearing history 
+		check browsing
+		check active logins
+		check form
+		optional check cache
+
+firefox extentions
+	ublock origin
+	vim vixn
+
