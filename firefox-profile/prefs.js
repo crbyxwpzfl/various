@@ -165,7 +165,7 @@ user_pref("privacy.cpd.offlineApps", true);
 user_pref("privacy.cpd.siteSettings", true);
 user_pref("privacy.history.custom", true);
 user_pref("privacy.purge_trackers.date_in_cookie_database", "0");
-user_pref("privacy.sanitize.pending", "[{\"id\":\"shutdown\",\"itemsToClear\":[\"cache\",\"cookies\",\"offlineApps\",\"history\",\"formdata\",\"downloads\",\"sessions\",\"siteSettings\"],\"options\":{}},{\"id\":\"newtab-container\",\"itemsToClear\":[],\"options\":{}}]");
+user_pref("privacy.sanitize.pending", "[]");
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 user_pref("privacy.sanitize.timeSpan", 0);
 user_pref("privacy.trackingprotection.enabled", true);
