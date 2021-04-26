@@ -1,6 +1,6 @@
 ## putty
 putty stores sessions in registry
-`regedit /e "%USERPROFILE%\Desktop\putty.reg" HKEY_CURRENT_USER\Software\SimonTatham` to export putty session to desktop
+`regedit /e "%USERPROFILE%\Desktop\putty.reg" HKEY_CURRENT_USER\Software\SimonTatham` to export putty session and settings to desktop<br>
 
 ## js alert vids
 ```javascript
