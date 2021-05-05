@@ -51,8 +51,8 @@ def status():
     #output = subprocess.Popen(['git', 'branch', '--show-current'], stdout=subprocess.PIPE)
     #print(str(output.stdout.read()).replace("\\n", " ").strip("b''"))
     output = subprocess.Popen(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], stdout=subprocess.PIPE)
-    branch = (str(output.stdout.read()).replace("\\n", " ").strip("b''")) #this strips b from branch name aswell e.g. blabla will be labla    
-    print(branch)
+    branch = (str(output.stdout.read()).replace("\\n", "").strip("b''")) #this strips b from branch name aswell e.g. blabla will be labla    
+    print(f"branch used for next action -{branch}-")
 
     global frage
     frage = input('(pull) or (forcepull) or (i)nit or (a)dd or (c)ommit or (p)ush or (f)orcepush or (n)othing ')
