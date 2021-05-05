@@ -45,7 +45,8 @@ def status():
     print()
     print("---------------------------------------------------------------------------")
     output = subprocess.run(['git', 'status'])
-    
+    print()
+
     global branch
     #only git version 2.22 +
     #output = subprocess.Popen(['git', 'branch', '--show-current'], stdout=subprocess.PIPE)
