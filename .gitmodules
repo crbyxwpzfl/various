@@ -19,3 +19,6 @@
 [submodule "bookmarks"]
 	path = bookmarks
 	url = git@gist.github.com:4865ba51fcd0a4af660f09e0c5dbcf5e.git
+[submodule "ahk"]
+	path = ahk
+	url = git@gist.github.com:e65375e1932c01ed96a818bba0978aa6.git
