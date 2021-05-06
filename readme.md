@@ -6,11 +6,6 @@ add `path\to\gists` to `PATH` env variable for global putty<br>
 putty stores sessions in registry
 `regedit /e "%USERPROFILE%\Desktop\putty.reg" HKEY_CURRENT_USER\Software\SimonTatham` to export putty session and settings to desktop<br>
 
-## autohotkey toggle window titlebar
-```autohotkey
-WinSet, Style, ^0xC00000, A
-```
-
 ## windows registry default shell
 `Computer\HKEY_CLASSES_ROOT\batfile\shell\open\command`<br>
 default `"%1" %*`
