@@ -28,3 +28,6 @@
 [submodule "curls"]
 	path = curls
 	url = git@gist.github.com:a15fe3c87293cab5ef5592772fcb1479.git
+[submodule "gitpy"]
+	path = gitpy
+	url = git@gist.github.com:9ad55eafaeb7ab15746f1341bd858456.git
