@@ -22,3 +22,6 @@
 [submodule "ahk"]
 	path = ahk
 	url = git@gist.github.com:e65375e1932c01ed96a818bba0978aa6.git
+[submodule "adb"]
+	path = adb
+	url = git@gist.github.com:c913a41e4f77f2ed7b25adeddf44acb9.git
