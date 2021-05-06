@@ -4,3 +4,18 @@
 [submodule "portableff"]
 	path = portableff
 	url = git@gist.github.com:0571c7e228f6c3a058578962c9dd2a94.git
+[submodule "virtualbox"]
+	path = virtualbox
+	url = git@gist.github.com:be27c7fed20ab80ff55f62b68a95fbbc.git
+[submodule "initvim"]
+	path = initvim
+	url = git@gist.github.com:322ad5225cbffe799a78a37e896197a4.git
+[submodule "ambilight"]
+	path = ambilight
+	url = git@gist.github.com:bd6ddc7a020df0f902faa41c4169f89e.git
+[submodule "switch-theme"]
+	path = switch-theme
+	url = git@gist.github.com:e3956fdff8824d168354199bf238115e.git
+[submodule "bookmarks"]
+	path = bookmarks
+	url = git@gist.github.com:4865ba51fcd0a4af660f09e0c5dbcf5e.git
