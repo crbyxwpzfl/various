@@ -34,3 +34,6 @@
 [submodule "ssh"]
 	path = ssh
 	url = git@gist.github.com:57897f3c8ff5e14eaa781c3fbb2bd3c8.git
+[submodule "windows"]
+	path = windows
+	url = git@gist.github.com:c28933f9ac23911d998def0fdbad8f36.git
