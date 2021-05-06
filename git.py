@@ -74,7 +74,7 @@ def status():
     global frage
     frage = input('p(u)ll or (i)nit or (a)dd change or (c)ommit or (p)ush or add (s)ubmodule or (n)othing ')
 
-    if str(frage) == "pull":
+    if str(frage) == "u":
         pull()
         status()
     
