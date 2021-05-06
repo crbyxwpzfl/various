@@ -1,0 +1,410 @@
+SSH [
+    RSA-KEY{
+    	WINDOWS run ssh-keygen
+	    put id_rsa.pub on server via zb. smb
+        Path on server is Users/USERNAME/.ssh/
+        rename id_rsa.pub to authorised_keys is not exsisting otherwise just append content
+    }
+]
+
+PHILLIPS [
+    PYLIPS {
+        PHILLIPS CURLS
+            %protocol% + %ip_address% + ":" + %port% + "/" + %api_version% + "/" + %endpoint%
+            curl -X GET --digest --insecure -u %username%:%password% https://%ip_address%:1926/6/%endpoint%
+            curl -X POST --digest --insecure -u %username%:%password% https://%ip_address%:1926/6/%endpoint% -d '%body%'
+            user: Nw1zkLWNrdHP0j8g
+            pass: aff241a1845c9de64f6954bd4aa92988b352342f29b5af50b9ff29e935b52531
+
+        BEFEHLE 
+            siehe wiki von pylips avalablie_commands.json
+
+        ACHTUNG 
+            WINDOWS SYSTEME 	--body ^"{^"^"nodes^"^":[{^"^"nodeid^"^":2131230774}]}^"
+            UNIX SYSTEME auch WSL 	--body '{"nodes":[{"nodeid":2131230774}]}'
+
+        BEISPIELE
+            curl -X POST --digest --insecure -u Nw1zkLWNrdHP0j8g:aff241a1845c9de64f6954bd4aa92988b352342f29b5af50b9ff29e935b52531 https://192.168.178.91:1926/6/ambilight/ currentconfiguration -d '{"styleName": "FOLLOW_COLOR", "isExpert": "true", "algorithm": "MANUAL_HUE", "colorSettings": {"color":{"hue": 60, "saturation": 100, "brightness": 255},"colorDelta":{"hue": 0, "saturation": 0, "brightness": 0}, "speed": 255}'
+
+            {"r": 100,"g": 210,"b": 30}
+
+            curl -v -s -X POST -d {"color":{"hue":80,"saturation":100,"brightness":100},"colordelta":{"hue":100,"saturation":100,"brightness":100},"speed":20,"mode":"Default"} http://192.168.178.91:1925/6/ambilight/lounge
+
+            curl -v -s -X POST -d {"styleName":"FOLLOW_VIDEO","isExpert":false,"menuSetting":"STANDARD"} http://192.168.3.51:1925/ambilight/currentconfiguration
+
+            curl -v -s -X GET -d http://192.168.178.91:1925/6/examples/ambilight/ambilight.html
+
+            curl -v -s -X POST -d "{"power":"On"}" http://192.168.178.91:1925/6/ambilight/power
+
+            curl -v -s -X POST {"current":"internal"} http://192.168.178.91:1925/6/ambilight/mode
+
+            curl -X POST --digest --insecure -u Nw1zkLWNrdHP0j8g:aff241a1845c9de64f6954bd4aa92988b352342f29b5af50b9ff29e935b52531 https://192.168.178.91:1926/6/volume -d '{"muted": false, "current": 18}'
+
+            pip3 install -r requirements.txt
+
+            curl -X POST --digest --insecure -u %username%:%password% https://%ip_address%:1926/6/%endpoint% -d '%body%'
+
+            Nw1zkLWNrdHP0j8g
+
+            aff241a1845c9de64f6954bd4aa92988b352342f29b5af50b9ff29e935b52531
+
+            '{"styleName": "FOLLOW_COLOR", "isExpert": "true", "algorithm": "MANUAL_HUE", "colorSettings": {"color":{"hue": 360, "saturation": 100, "brightness": 255},"colorDelta":{"hue": 0, "saturation": 0, "brightness": 0}, "speed": 255}'
+    }
+
+    CURLS-TV{
+        TV API
+        https://gist.github.com/marcelrv/ee9a7cf97c227d069e4ee88d26691019
+
+
+        PLATZHALTER
+        <TV-IP> 192.168.178.91 aus einstellungen
+
+        ambilight an/aus
+        curl -v -s -X POST -d "{"power":"On"}" http://192.168.178.91:1925/6/ambilight/power
+
+        Audio Post //not working
+        curl -v -s -X POST -d "{"muted": false,"current":"18"}" http://192.168.178.91:1925/6/audio/volume
+    }
+
+    CURLS-HUE{
+        HUE API
+
+        ACHTUNG escape json!
+
+        PLATZHALTER:
+        <LAMPE> 4 für dazwischen; 5 für vorn; 6 für hint; 7 für anlage
+
+        <GRUPPE> 0 für lampen&anlage; 3 für lampen
+
+        <BRIDGE-INTERNAL_IP> 192.168.178.84 über hue seite/ router/ googel halt depp 
+
+        auth
+        curl -d  "{\"devicetype\":\"my_hue_app#laptop f\"}" -X POST http://<BRIDGE-INTERNAL-IP>/api
+
+        test abfrage
+        curl -X GET http://192.168.178.84/api/1SF1BTaLNOFwKzGaohpRC6jERzcZEsw3FDny5n8I/lights
+
+        EINZELN ein/aus
+        curl -d "{\"on\": true }" -X PUT http://192.168.178.84/api/1SF1BTaLNOFwKzGaohpRC6jERzcZEsw3FDny5n8I/lights/<LAMPE>/state
+
+        GRUPPE ein/aus
+        curl -d "{\"on\": false}" -X PUT http://192.168.178.84/api/1SF1BTaLNOFwKzGaohpRC6jERzcZEsw3FDny5n8I/groups/<GRUPPE>/action
+    }
+
+    ANDROID-DEBUG-BRIDGE{
+        ON WINDOWS
+        downlad android sdk
+        runn cmd/powershell in extracted location via shift right click
+
+        ON TV
+        android settings
+        info
+        click build 7 times
+        back to android settings
+        entwikler optionen
+        usb debuging/wlan debugging on
+
+        ON WINDOWS CMD
+        .\adb connect ip:5555 or adb connect ip:5555 (connect to device 192.168.178.91:5555)
+
+        ON TV 
+        Accept popup
+
+        WSL WINDOWS SUB UBUNTU
+        sudo appt get adb
+
+        OTHER COMMANDS WHILE IN CD/ EXTRACTED FOLDER 
+        .\adb devices                                               (connected device list)
+        .\adb shell input keyevent 24                               (vol up) / 25(vol down) / 26(on/off)
+        .\adb shell dumpsys power                                   (info of tv)
+        .\adb shell media volume --show --stream 3 --set 11         (set vol)
+        .\adb shell media volume --stream 3 --get                   (get volume)
+        .\adb shell input keyevent KEYCODE_F6                       (set input F6 atv F1 pc)
+        .\adb kill-server                                           (kill server)
+        .\adb start-server                                          (sart server)
+        .\adb shell dumpsys power | grep "Display Power: state="      (get power state replace grep with find when run from WINDOWS)
+    }
+
+    WOL-BAT{
+        @echo off
+        set "mac=70:af:24:ba:ed:76"
+        set "ip=192.168.178.255"
+        powershell -ExecutionPolicy ByPass -Command "&{$mac = '%mac%' -replace '[\|:]','';$UDPclient = new-Object System.Net.Sockets.UdpClient; $UDPclient.Connect('%ip%',9);[void]$UDPclient.Send((,[byte]255 * 6) + ((0,2,4,6,8,10 | %% {[convert]::ToByte($mac.substring($_,2),16)}) * 16) , 102)}"
+    }
+
+    ADB-BAT{
+        @echo off
+        D:
+        cd D:\jnctn-onefs\philips-sach\platform-tools_r30.0.2-windows\platform-tools
+        adb connect 192.168.178.91:5555
+        adb shell input keyevent 26
+        adb shell input keyevent KEYCODE_F1
+        adb kill-server
+        DisplaySwitch.exe /external
+    }
+]
+
+HOMEBRIDGE [
+    HOMEBRIDGE-SETUP {
+        DO PORTABLE INSTALL
+            Get binaries from node.js
+            cd to local install location then
+            test node.js -v and npm -v in install dir
+            use homebruidge -U "PATH TO CONFIG" to run homebridge
+
+        WITH Node.js Installer directories then for plugins are 
+            C:\Users\roess\AppData\Roaming\npm\node_modules
+            C:\Users\roess\.homebridge\
+    
+        NPM commands
+            npm outdated -g             //check for outdated plugins
+            npm update -g               //Installiert alle Updates
+            npm uninstall Pluginname -g //Deinstallieren eines Plugins
+            npm ls                      //Installierte Plugins anzeigen
+    }
+
+    HOMEBRIDGE-CMD4 {
+        DO NOT RUN AS SERVICE!
+
+        ALWAYS SPECIFY FULL PATH IN CONFIG
+        bash /mnt/c/Users/roess/.homebridge/Cmd4Scripts/VOLUME.sh
+
+        Check EOL End of line versions use Unix(LF)! not windows(CRLF) for.sh scripts
+    }
+
+    HOMEBRIDGE-FFMPEG {
+        FOR HOMEBRIDGE CONFIG
+            "stillImageSource": "-i D:\\temporaer-sicherungen\\IMG_7721.JPG",
+            "maxStreams": 1,
+            "maxWidth": 1280,
+            "maxHeight": 720,
+            "maxFPS": 30,
+            "maxBitrate": 400,
+            "packetSize": 1316,
+            "vcodec": "libx264",
+            "forceMax": false,
+
+        SCREENSHOT
+            ffmpeg -f gdigrab -t 1 -i desktop -f mjpeg test.png -y
+
+            -f -> force input file format here gdigrab
+            -t 1 -> one frame
+            -i -> input here desktop
+            -f -> force output file format here mjpeg can be png too
+            test.png -> output file
+            -y -> overwrite output file
+
+        SCREENRECORDING
+            ffmpeg -f gdigrab -framerate 30 -i desktop output.mkv
+
+            -f -> force input file format here gdigrab
+            -framerate 30 -> framerate to recorde
+            -i -> input here desktop
+            output.mkv -> output file
+
+        STREAMING
+            -preset ultrafast -vcodec libx264 -tune zerolatency -b 900k rtsp://localhost:8554/live
+
+        DOCUMENTATION
+            VIDEO -> https://trac.ffmpeg.org/wiki/Capture/Desktop
+            FRAME -> http://matt.coneybeare.me/how-to-generate-png-screenshots-using-ffmpeg/
+            GDIGRAP flags -> https://ffmpeg.org/ffmpeg.html#toc-Main-options
+    }
+]
+
+SPIELE [
+    ACCOUNTS
+        PLATFORM	    BENUTZER	PASSWORD		        MAIL			    SPIELE
+
+        AzureParsecVM	par-flo		wiszap-8pecqy-fixdaM
+
+        RockstarGames	bobblehead	#Ytnlsrpg1R		        gprsnlty@gmail.com	GTAV
+
+        Origin		    crbyxwpzfl	#Ytnlsrpg1E		        gprsnlty@gmail.com	BF4
+
+        EpicGames	    slp		#Ytnlsrpg1E		        gprsnlty@gmail.com	
+
+        Steam		    whatodd	#Ytnlsrpg1S		        gprsnlty@gmail.com	GoatSim-BlackOps3
+
+        Battlenet	    slp		#Ytnlsrpg1B		        gprsnlty@gmail.com	Overwatch
+
+        Uplay		    whatodd	#Ytnlsrpg1U		        gprsnlty@gmail.com	Anno2070-Division2
+]
+
+VIRTUALBOX [
+    INSTALL {
+        set up android vm 
+
+        SPEICHER ORT "C:\Users\roess\VirtualBox VMs\ndrd\Android-x86 8.1-r3 (64bit).vdi"
+
+        INSTALL Android via Vdi VORTEIL schnell NACHTEIL min 7gb platz
+        1. Download vdi from osboxses.org
+        2. Download 7zip
+        3. MOVE VDI TO FOLDER
+        4. Vbox Neu
+        5. Otherlinux 64bit
+        6. Ram 4096
+        7. Exsisting Vdi
+        8. choose Vdi
+        9. Start Vm
+
+        INSTALL Android via Iso VORTEIL kleine install groesse moegl
+        1. Download Iso from Android-x86.org use sth similar to android-x86_64-9.0-r2.iso
+        2. Vbox Neu
+        3. Linux
+        4. Linux 2.6 3.x 4.x 64bit
+        5. 1024 Ram the more the better but works down to 1gb with android 9
+        6. Festplatte Erzeugen
+        7. VDI lassen
+        8. dynamisch lassen
+        9. nicht weniger als 2gb besser merh aber aktuell 2Gb für whatsapp auf android 9 genug
+        10. Create Partition
+        11. boot up
+        12. Advanced options
+        13. auto_installtion
+        14. YES auto install
+        15. boot in android and imediatly stop vm
+        16. iso raus
+        17. bootup
+        18. android cnfigurieren TIPP mehr cpu kerne helfen setup schneller zu machen später dann weniger wählen
+	
+        SETUP VM
+        1. System Prozessor 1cpus the more the better ACHTUNG nicht alle vergeben!! android 9 läuft mit 1
+        5. System Hauptplatiene UTC time OFF
+        6. System Hauptplatiene Zeigeraet PS2-Maus use USB tablet for mouse integration
+        2. Anzeige VBoxSVGA!!!
+        3. Anzeige 3d Accel Disabled!!!
+        4. Anzeige Grafikspeicher Max
+        5. Extentionpack von Vbox.org installieren for kamera support
+	
+        SETUP ANDROID
+        1. System Ueber dieses Tablet Built Number 7mal tippen 
+        2. Developper Settings Aktiv Lassen waehrend laden
+
+        MOVE VDI FILE
+        1. Unmount Vdi from vm Via Aendern MAssenspeicher
+        2. Remove Vdi from Vbox via Datei Manager fuer virtuelle Medien
+        3. Remount Vdi to Vm Via Aendern Massenspeicher
+
+        ERROR handling
+        1. Stuck in consol change display ressolution or GRUP Skippen SUCH ONLINE or einfach INSTALL VIA VDI
+        2. Webcam Graues bild mit kamera Lenovo Vantage Datenschutz prüfen
+	
+	CHANGE RESOLUTION
+        1. in GRUB boot in to debug mode
+        2. mount -o remount,rw /mnt
+        3. cd /mnt/grub
+        4. vi menu.lst
+        5. unter first kernel add vga=ask nach root=... und vor SRC=...
+        6. reboot normal press enter choose res
+    }
+
+    CMDS-VB {
+        fix black screen
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm "ndrd" acpipowerbutton
+
+        start vm ohne gui
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm "ndrd" --type headless
+
+        shutdown win und savestate vm
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm "ndrd" savestate && shutdown /s /t 10
+
+        list running vms
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" list runningvms
+
+        Snapshot handling
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" snapshot "macOS" delete "1"
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" snapshot "macOS" take "1"
+        ERROR NOT ENUGH SPACE TO DELETE Snapshot
+            create junjtion to snapshot folder on sdhc then delete / merge then delete junjtion how to s.h. windows tricks unten STRG+F oder GOOGLE  
+        }
+
+    SAVESTATE-SHUTDOWN {
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm "ndrd" savestate && shutdown /s /t 10
+    }
+]
+
+WINDOWS-SETUP [
+    sdhc als backup sd karte
+    vbox -> macOS backup + android whatsapp
+    onedrive -> home driektory for homebridge + menue.bats + aufgabenplanung + edge download ordner + screenshot location
+]
+
+WINDOWS-TRICKS [
+    CHANGE-SCREENSHOT-FOLDER{
+        Windows 10 Screenshots Are Not Being Saved in Pictures Folder FIX
+
+        1. HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
+        2. Find {B7BEDE81-DF94-4682-A7D8-57A52620B86F}
+        3. If its not there create it 
+        4. Double click on it and Make sure its value data is %USERPROFILE%\Pictures\Screenshots
+        5.Then reboot your computer.
+    }
+
+    TERMINAL-CMDS{
+        shutdown /s
+        taracert "ip"
+        ping "ip"
+        cd "pfad"
+        dir
+        homebridge -D
+    }
+
+    ADD-STARTUP{
+        füge bat files oder programme zu autostart hinzu
+        win+R shell:startup
+    }
+
+    SHORTCUT-IN-WINDOWS{
+        verknüpfung erstellen und in properties tastenkombi eingeben und in c: speichern
+    }
+
+    ADD-STARTMENUE{
+        gehe zu C:\Users\roess\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
+        füge verknüpfungen zu bat files oder anderen prgrammen hinzu
+    }
+
+    AUTOSTART-EINTRÄGE-LÖSCHEN{
+        1. öffne registry app
+        2. gehe yu HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
+        3. und HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+        4. lösche nur wenn absolut sicher!!
+        5. 32Bit Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run
+    }
+
+    JUNCTION-ERSTELLEN{
+        bsp icloud drive speicher ort ändern mit junction
+        1. Disable iCloud Drive from the Control Panel (please really do this, otherwise it will mess things up)
+        2. Move (not copy) your iCloudDrive directory (C:\Users\<username>\iCloudDrive) to the new location.
+        3. Open a command prompt and type: mklink /J "C:\Users\<username>\iCloudDrive" "<new destination>" This creates a junction (sort of a shortcut, but more powerfull) from the old location to the new location.
+        4. Reboot your computer and everything should be fine
+    }
+
+    REMOVE-WINAPPS{
+        REMOVE WINDOWS APPS
+        1. Press Windows Key + Q, and in the search box, type PowerShell.
+        2. From results, right click on Windows PowerShell and select Run as administrator option.
+        3. Type Get-AppxPackage and press Enter.
+        (This command will output a long list of all installed apps containing lots of information about each app).
+        4. Type Get-AppxPackage | Select Name, PackageFullName and press Enter.
+        (This command will show only the name of the app and its PackageFullName information).
+        5. Select the PackageFullName information of the desired app and copy it.
+        6. Type Get-AppxPackage PackageFullName | Remove-AppxPackage and press Enter.
+        (This command is to remove the app from the system, replace PackageFullName with the copied information with Step 5).
+        For example, if you want to remove Maps app, the command to remove it will be as following:
+        Get-AppxPackage *Maps* | Remove-AppxPackage
+        7. Wait till completion of the command, and check if the app is uninstalled, if not restart the system and
+        check.
+        
+        Note:
+        If you want to uninstall the app from all user accounts, use the following command format:
+        Get-AppxPackage -allusers PackageFullName | Remove-AppxPackage
+        If you want to remove the app from any particular user account, use following command:
+        Get-AppxPackage -user username PackageFullName | Remove-AppxPackage
+        (Replace username in the above command with the correct user account name).
+    }
+
+    ALERT-VBS{
+        x=msgbox("Blahblahblah" ,0, "Alert") 
+    }
+]

@@ -1,0 +1,695 @@
+AHK [
+    AUTO-HOT-KEY-MOUSE-DRAG-SKRIPT{
+        #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+        ; #Warn  ; Enable warnings to assist with detecting common errors.
+        SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+        SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+        p:: 
+        Send ä
+        Sleep 1000
+        MouseClickDrag, Left, 30, 30, 30, 30, 80, R
+    }
+
+    AUTO-HOT-KEY-TEST-SKRIPT{
+        #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+        ; #Warn  ; Enable warnings to assist with detecting common errors.
+        SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+        SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+        q::
+        Run C:\Users\roess\files\DS4Windows\DS4Windows.exe
+        Sleep 500
+        WinActivate, DS4Windows
+
+        keywait, q
+
+        WinMinimize, A
+        Return
+    }
+
+    AUTO-HOT-KEY-HUE-DS4-SYNC-ERRORHANDLING {
+        DS4Windows Top button not working (hue color sync)
+        1, check screen portion synced (shortcut hb)
+        2, check ahk script running
+        3, check Ds4Window tab is set to stop bottom right
+        4, check Profile 
+        5, check keybound
+    }
+
+    AUTO-HOT-KEY-HUE-SKRIPT{
+        #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+        ; #Warn  ; Enable warnings to assist with detecting common errors.
+        SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+        SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+        F2::
+        WinActivate, DS4Windows
+        Send {Tab}
+        Send {Tab}
+        Send {Tab}
+        Send {Tab}
+        Send {Tab}
+        Send {Enter}
+        Send {Tab}
+        Send {Tab}	
+        Send {Enter}
+        Send {Tab}
+        Send {Tab}
+        Send {Enter}
+
+        Sleep 500
+
+        Send {f4}
+        CoordMode, Mouse, Screen
+        MouseMove, 1095, 451, 5
+        Click down
+
+        keywait, F2
+        Send {f4}
+        Click up
+
+        Send {Tab}
+        Send {Enter}
+        Send {Tab}
+        Return
+    }
+
+    AUTO-HOT-KEY-STEAM-SKRIPT{
+        #maxThreadsPerHotkey, 2
+        setKeyDelay, 50, 50
+        setMouseDelay, 50
+        banana:=0
+
+        $f1::
+            ; banana:=!banana .... This assigns banana to the value of NOT (!) banana. so lets
+            ; say banana starts out FALSE (0). you then turn banana to NOT FALSE. which is
+            ; TRUE (1). so now banana is set to TRUE. and then lets say you toggle it again.
+            ; you set banana to NOT TRUE, which is FALSE. banana is now set to FALSE. 
+            ; .... 1 is true, 0 is false. ! is NOT.
+            banana:=!banana
+        
+            if (banana=1)
+            {
+                Run C:\Users\roess\files\stm\Steam.exe
+            }
+            else{
+                Run cmd.exe /c taskkill /F /IM "Steam.exe" /T
+            }
+        return
+
+
+        NumpadAdd::F6 ;hue sync heller
+        return
+
+        NumpadSub::F5 ;hue sync dunkler
+        return
+
+        NumpadMult::F7 ;hue sync an aus
+        return
+
+        LWin & NumpadAdd::Volume_Up
+        return
+
+        Lwin & NumpadSub::Volume_Down
+        return
+
+        LWin & NumpadMult::
+        Run cmd.exe /c taskkill /F /IM "cmd.exe" /T
+        Sleep 500
+        Run cmd /c "cd C:\Users\roess && homebridge"
+        Return
+    }
+
+    AUTO-HOT-KEY-RANDOM-SKRIPT{
+        Space::Space
+        Enter::Enter
+        Esc::Esc
+
+        Up::Up
+        Down::Down
+        Left::Left
+        Right::Right
+
+        Tab::Tab
+
+        a::a
+        b::b
+        c::c
+        d::d
+        e::e
+        f::f
+        g::g
+        h::h
+        i::i
+        j::j
+        k::k
+        l::l
+        m::m
+        n::n
+        o::o
+        p::p
+        q::q
+        r::r
+        s::s
+        t::t
+        u::u
+        v::v
+        w::w
+        x::x
+        y::y
+        z::z
+    }
+
+    AUTO-HOT-KEY-SCREENCAPTURE-SKRIPT{
+        Send #{PrintScreen}
+        FileMove, C:\Users\roess\Pictures\Screenshots\*.png, C:\Users\roess\files\screenshot.png, 1
+    }
+]
+
+ TEST.sh occupancy-sensor (
+            #!/bin/bash
+            # Notes
+            # 1) This script is called as defined by the config.json file as:
+            #    "state_cmd": "bash .homebridge/Cmd4Scripts/PS4.sh"
+            #    $1 = 'Get'
+            #    $2 = <Device name>    DO NOT USE SPACES IN DEVICE NAME. IT SCREWS UP COMMAND LINE PARSING
+            #    $3 = <Characteristic>
+            #    $4 = <Device option>
+            #
+            # 2) For a set of On, the command issued would be:
+            #    bash .homebridge/Cmd4Scripts/PS4.sh Set PS_4 On false
+            #       or
+            #    bash .homebridge/Cmd4Scripts/PS4.sh Set PS_4 On true
+            #
+            # 3) For a Get of On, the command issued would be:
+            #    bash .homebridge/Cmd4Scripts/PS4.sh Get PS_4 On
+            #  
+            #    Homebridge-cmd4 will interpret the result of false to be 1
+            #    and true to be 0
+            # This is only here for the first run.
+
+            # echo "\$1='$1' \$2='$2' \$3='$3' \$4='$4'"
+
+            if [ "$1" = "Get" ]; then  
+            if [ "$3" = "OccupancyDetected" ]; then
+                "/mnt/c/Program Files/Oracle/VirtualBox/VBoxManage.exe" controlvm "ndrd" acpipowerbutton
+                rc=$?
+                if [ "$rc" = "0" ]; then
+                    echo "OCCUPANCY_DETECTED"
+                    exit 0
+                else
+                    echo "false"
+                    exit 0
+                fi
+            fi
+            fi
+
+            exit -1
+)
+        Thermo.sh thermostat-adb (
+            #!/bin/bash
+            # Notes
+            # 1) This script is called as defined by the config.json file as:
+            #    "state_cmd": "bash .homebridge/Cmd4Scripts/PS4.sh"
+            #    $1 = 'Get'
+            #    $2 = <Device name>    DO NOT USE SPACES IN DEVICE NAME. IT SCREWS UP COMMAND LINE PARSING
+            #    $3 = <Characteristic>
+            #    $4 = <Device option>
+            #
+            # 2) For a set of On, the command issued would be:
+            #    bash .homebridge/Cmd4Scripts/PS4.sh Set PS_4 On false
+            #       or
+            #    bash .homebridge/Cmd4Scripts/PS4.sh Set PS_4 On true
+            #
+            # 3) For a Get of On, the command issued would be:
+            #    bash .homebridge/Cmd4Scripts/PS4.sh Get PS_4 On
+            #  
+            #    Homebridge-cmd4 will interpret the result of false to be 1
+            #    and true to be 0
+            # This is only here for the first run.
+            if [ ! -f "/tmp/fileVariableHolderTHERMOct" ]; then
+            echo "0" > "/tmp/fileVariableHolderTHERMOct"
+            fi
+            if [ ! -f "/tmp/fileVariableHolderTHERMOtt" ]; then
+            echo "0" > "/tmp/fileVariableHolderTHERMOtt"
+            fi
+            if [ ! -f "/tmp/fileVariableHolderTHERMOunit" ]; then
+            echo "CELSIUS" > "/tmp/fileVariableHolderTHERMOunit"
+            fi
+            if [ ! -f "/tmp/fileVariableHolderTHERMOtstate" ]; then
+            echo "OFF" > "/tmp/fileVariableHolderTHERMOtstate"
+            fi
+            if [ ! -f "/tmp/fileVariableHolderTHERMOcstate" ]; then
+            echo "OFF" > "/tmp/fileVariableHolderTHERMOcstate"
+            fi
+
+            # echo "\$1='$1' \$2='$2' \$3='$3' \$4='$4'"
+
+            if [ "$1" = "Get" ]; then
+                if [ "$3" = "TemperatureDisplayUnits" ]; then
+                    cat /tmp/fileVariableHolderTHERMOunit
+                    rc=$?
+                    if [ "$rc" = "0" ]; then
+                        exit 0
+                    else
+                        echo "failed"
+                        exit -1
+                    fi
+                else
+                    if  [ "$3" = "TargetHeatingCoolingState" ]; then
+                        cat /tmp/fileVariableHolderTHERMOtstate
+                        rc=$?
+                        if [ "$rc" = "0" ]; then
+                            exit 0
+                        else
+                            echo "failed"
+                            exit -1
+                        fi
+                    else
+                        if [ "$3" = "CurrentTemperature" ]; then
+                            cat /tmp/fileVariableHolderTHERMOct
+                            rc=$?
+                            if [ "$rc" = "0" ]; then
+                                exit 0
+                            else
+                                echo "failed"
+                                exit -1
+                            fi
+                        else
+                            if [ "$3" = "TargetTemperature" ]; then
+                                cat /tmp/fileVariableHolderTHERMOtt
+                                rc=$?
+                                if [ "$rc" = "0" ]; then
+                                    exit 0
+                                else
+                                    echo "failed"
+                                    exit -1
+                                fi
+                            else
+                                if [ "$3" = "CurrentHeatingCoolingState" ]; then
+                                    cat /tmp/fileVariableHolderTHERMOcstate
+                                    rc=$?
+                                    if [ "$rc" = "0" ]; then
+                                        exit 0
+                                    else
+                                        echo "failed"
+                                        exit -1
+                                    fi
+                                fi
+                            fi
+                        fi
+                    fi
+                fi
+            fi
+
+            if [ "$1" = "Set" ]; then
+            if [ "$3" = "TargetTemperature" ]; then
+                    echo $4 > /tmp/fileVariableHolderTHERMOtt
+
+                    float=$4
+                    int=${float%.*}
+
+                    adb shell media volume --show --stream 3 --set $int
+
+                    echo $int > /tmp/fileVariableHolderTHERMOct
+
+                    exit $?
+            else
+                    if [ "$3" = "CurrentTemperature" ]; then
+                        echo $4 > /tmp/fileVariableHolderTHERMOct
+                        exit $?
+                    else
+                        if [ "$3" = "TargetHeatingCoolingState" ]; then
+                            if [ "$4" = "0" ]; then
+                                adb kill-server
+                            else
+                                adb connect 192.168.178.91:5555
+                            fi
+                            echo $4 > /tmp/fileVariableHolderTHERMOtstate
+                            exit $?
+                        else
+                            if [ "$3" = "CurrentHeatingCoolingState" ]; then
+                                echo $4 > /tmp/fileVariableHolderTHERMOcstate
+                                exit $?
+                            fi
+                        fi
+                    fi
+            fi
+            fi
+            exit -1
+)
+
+ffmpeg old vlc cmds (
+OLD VLC COMMAND LINE
+            C:\Program Files\VideoLAN\VLC>
+            :sout=#transcode{vcodec=h264,vb=1008,fps=30,scale=1,width=1280,height=720,acodec=mp4a,ab=128,channels=2,samplerate=44100,scodec=none}:rtp{sdp=rtsp://:8554/} :sout-all :sout-keep
+            vlc screen:// :screen-fps=25 :screen-caching=100 :sout=#transcode{vcodec=h264,vb=4608,fps=25,scale=Automatisch,acodec=mp4a,ab=128,channels=2,samplerate=44100,scodec=none}:rtp{sdp=rtsp://:8554/} :sout-all ::sout-keep
+            WORKS--> vlc screen:// :screen-fps=30 :screen-caching=300 :sout=#transcode{vcodec=h264,vb=4608,fps=25,scale=Automatisch,acodec=mp4a,ab=128,channels=2,samplerate=44100,scodec=none}:rtp{sdp=rtsp://:8554/} :sout-all ::sout-keep
+            C:\Users\roess\AppData\Roaming\npm\node_modules\homebridge-camera-ffmpeg\node_modules\ffmpeg-for-homebridge\ffmpeg.exe 
+)
+
+ HOMEBRIDGE-HUE-OSRAM-CONFIG {
+
+        {
+        "bridge": {
+            "name": "Homebridge",
+            "username": "AA:BB:CC:DD:EE:FF",
+            "port": 12345,
+            "pin": "123-45-678"
+        },
+        "platforms": [
+            {
+            "platform": "Hue",
+            "users": {
+                "001788FFFExxxxxx": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" <---- Platzhalter werden ersezt durch credentials displayed after first start in log of homebridge
+            },
+            "lights": true
+            }
+        ]
+        }
+
+        Add all bridges sepparated via komma
+
+        run to change osram from bulb to outlet 	
+        $ ph -H IP_Addresse_Hue_Brigde -u Username outlet -v
+    }
+}
+
+    AZURE-SETUP {
+        STEAM REMOTE PLAY
+        1 run RDP Azure link
+        2 stop Rainway in taskmenager
+        3 run Steam
+        4 run Rainway via shortcut or C:\Program Files\Rainway
+            (RDP crashes)
+            (Parsec display should be set)
+
+        PARSEC VERSIOM
+        1 run RDP Azure link
+        2 stop Parsec and Rainway in taskmenager
+        3 run Parsec via shortcut or C:\Users\par-flo\AppData\Roaming\Parsec\electron
+        4 run Rainway via shortcut or C:\Program Files\Rainway
+            (RDP crashes)
+            (Parsec display should be set)
+
+        DEBUGGING PARSEC VERSION
+        1 run RDP via Azure link
+        2 stop Parsec and Rainway in taskmenager
+        3 run Anydesk connection
+        4 run Rainway via shortcut or C:\Program Files\Rainway
+            (RDP crashes)
+            (AnyDesk BlackScreen)
+        5 connect to Rainway via browser
+            (Anydesk Wakes)
+        6 run Parsec via shortcut or C:\Users\par-flo\AppData\Roaming\Parsec\electron
+            (check Parsec host Generic PnP)
+    }
+
+
+MSC-BACKUP-BAT{
+                "c:\Program Files\WindowsApps\AppleInc.iTunes_12107.3.48019.0_x64__nzyj5cx40ttqa\iTunes.exe"
+                timeout /T 10 /nobreak
+                move /Y "c:\Users\roess\Music\iTunes\iTunes Music Library.xml" "d:\jnctn-files\msc"
+                taskkill /F /IM iTunes.exe
+
+                robocopy "C:\Users\roess\Music\iTunes" "D:\sicherungskopien-sortiert\dokumente-sortiert" "iTunes Music Library.xml" /MON:1 /Log+:"D:\sicherungskopien-sortiert\dokumente-sortiert\icdrive-robocopy-log.txt" /tee
+}
+
+WSL{
+        activate windows feature
+        download distro via microsoftstore
+
+        pw: wsl
+        User: wsl
+
+        COMMANDS
+            $ bash (for scripts with .sh)
+            $ sudo mount -t drvfs D: /mnt/d (mount D: to location /mnt/d)
+            $ cd /mnt/c (go to C:/)
+            $ ls /mnt/c (list directory)
+            $ $ sudo umount /mnt/d
+            $ explorer.exe . (open explorer at location)
+            $ chmod (change permissions on folder)
+}
+
+ROBOCOPY [
+    robocopy "C:\Users\roess\Desktop\von hier" "C:\Users\roess\Desktop\nach hier" /s /MON:1 /Log:"C:\Users\roess\Desktop\log.txt" /tee
+
+    robocopy "C:\Users\roess\Desktop\von hier" "C:\Users\roess\Desktop\nach hier" /s /l /MAXAGE:2 /MON:1 /Log:"C:\Users\roess\Desktop\log.txt" /tee
+
+    robocopy "C:\Users\roess\Desktop\von hier" "C:\Users\roess\Desktop\nach hier" /s /MAXAGE:10 /MON:1 /Log:"C:\Users\roess\Desktop\log.txt" /tee
+
+    /tee	Schreibt die Status Ausgabe in das Konsolenfenster sowie in die Protokolldatei.
+    /l	Gibt an, dass Dateien nur aufgelistet werden sollen (nicht kopiert, gelöscht oder Zeitstempel).
+    /Log +:<LogFile>	Schreibt die Status Ausgabe in die Protokolldatei (fügt die Ausgabe an die vorhandene Protokolldatei an).
+    /maxAge<N>	Gibt das maximale Datei Alter an (um Dateien auszuschließen, die älter als N Tage oder Datum JJJJMMTT sind).
+    /s	Kopiert Unterverzeichnisse. Beachten Sie, dass bei dieser Option leere Verzeichnisse ausgeschlossen werden.
+
+
+    ACHTUNG
+    MAXAGE uses modified dates NOT creation dates
+    BSP: 
+    icloud fotos die vor mehr als MAXAGE:1 tag erstellt worden sind 
+    aber innerhalb MAXAGE:1 tag modifiziert wurden, werden in auswahl eingeschlossen.
+    Ansehen am handy, apples foto algorithmen usw aendern das modifizier dautum.
+]
+
+SPRACHEN [
+    BASH {
+        let "vol = $4/2" //arithmetic mit let
+        ash .homebridge/Cmd4Scripts/PS4.sh Get 'PS4' 'Brightness' //call script mit parametern $1 $2 $3 $4
+        explorer.exe . //open explorer at current location
+
+        ACHTUNG .sh dateien mit LF (linux standard) EOL (end of line) characters speichern!! 
+        NICHT mit CRLF (windows standard)
+
+        IN VSCODE unten lilaleiste rechts
+        ODER NOTEPAD++ EOL conversion
+
+        ERROR von bash script "unexpected end of file"
+
+
+        WICHTIG IST NICHT EQUIVALENT!!
+        bash .../test.sh PARAMETER 	if [ "$1" = "..." ]
+        bash .../test.sh 'PARAMETER' 	if [ "$1" = "'...'" ]
+    }
+
+    BATCH {
+        
+        BSP
+            homebridge-start.bat
+                homebridge
+
+            test.bat
+                echo hi
+                echo hallo
+                set "ip=123123123"
+                echo %ip%
+                @pause
+
+            wake-on-lan.bat
+                @echo off
+                set "mac=70:af:24:ba:ed:76"
+                set "ip=192.168.178.255"
+                powershell -ExecutionPolicy ByPass -Command "&{$mac = '%mac%' -replace '[\|:]','';$UDPclient = new-Object System.Net.Sockets.UdpClient; $UDPclient.Connect('%ip%',9);[void]$UDPclient.Send((,[byte]255 * 6) + ((0,2,4,6,8,10 | %% {[convert]::ToByte($mac.substring($_,2),16)}) * 16) , 102)}"
+
+            apple-fotos-sichern.bat
+                robocopy "C:\Users\roess\Pictures\iCloud Photos\Photos" "D:\temporaer-sicherungen" /MAXAGE:1 /MON:1 /Log+:"D:\temporaer-sicherungen\temp-sich-robocopy-log.txt" /tee /l
+
+            apple-drive-sichern.bat
+                robocopy "C:\Users\roess\iCloudDrive" "D:\sicherungskopien-sortiert\dokumente-sortiert" /s /MON:1 /Log+:"D:\sicherungskopien-sortiert\dokumente-sortiert\doku-sort-robocopy-log.txt" /tee
+    }
+
+    PYTHON {
+        INSTALL-LIBRARYS {
+            mit pip
+        }
+
+        WEB-SCREAPER-SELENIUM {
+            import time
+
+            from msedge.selenium_tools import Edge, EdgeOptions
+            from bs4 import BeautifulSoup
+            from selenium import webdriver
+            import requests
+            import json
+
+            options = EdgeOptions()
+            options.use_chromium = True
+            #options.add_argument("headless")
+            #options.add_argument("disable-gpu")
+            driver = Edge("C:/Users/roess/Downloads/edgedriver_win64/msedgedriver.exe", options = options)
+
+
+            try:
+                SCROLL_PAUSE_TIME = 10
+                driver.get("https://music.apple.com/de/playlist/wei%C3%9F-nicht/pl.u-6mo4ayKuBqYYXWj")
+
+                time.sleep(10)
+
+                last_height = driver.execute_script("return document.body.scrollHeight")
+
+                while True:
+                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    time.sleep(SCROLL_PAUSE_TIME)
+                    new_height = driver.execute_script("return document.body.scrollHeight")
+                    if new_height == last_height:
+                        break
+                    last_height = new_height
+
+                soup = BeautifulSoup(driver.page_source, "html.parser")
+
+                song = soup.findAll('div', class_='song-wrapper two-lines')
+
+                dataArr= []
+                for container in song:
+                    SongsObject ={
+                        "name": container.find('div', class_='song-name typography-label').text.replace('\n',''),
+                        "interpret": container.find('div', class_='by-line typography-caption').text.replace('\n','')
+                    }
+                    print(SongsObject)
+                    dataArr.append(SongsObject)
+
+                with open("C://Users/roess/Desktop/Neuer Ordner/Data.json", 'w') as outfile:
+                    json.dump(dataArr, outfile)
+
+            finally:
+                driver.quit()
+        }
+
+        WEB-SCRAPER-SIMPLE {
+            from bs4 import BeautifulSoup
+            import requests
+
+            url = "https://music.apple.com/de/playlist/for-michi/pl.u-AkAm8qpF2JMMqEo"
+            results = requests.get(url)
+
+            soup = BeautifulSoup(results.text, "html.parser")
+
+            #print(soup.prettify())
+
+            song = soup.findAll('div', class_='song-wrapper two-lines')
+            #print(song)
+
+            for container in song:
+                #name = container.text
+                #print(name)
+                SongsObject ={
+                    "name": container.find('div', class_='song-name typography-label').text,
+                    "interpret": container.find('div', class_='by-line typography-caption').text
+                }
+                print(SongsObject)
+        }
+
+        PARSE-DATA {
+            import time
+
+            from msedge.selenium_tools import Edge, EdgeOptions
+            from bs4 import BeautifulSoup
+            from selenium import webdriver
+            import requests
+            import json
+
+            options = EdgeOptions()
+            options.use_chromium = True
+            #options.add_argument("headless")
+            #options.add_argument("disable-gpu")
+            driver = Edge("C:/Users/roess/Downloads/edgedriver_win64/msedgedriver.exe", options = options)
+
+
+            try:
+                SCROLL_PAUSE_TIME = 10
+                driver.get("https://music.apple.com/de/playlist/wei%C3%9F-nicht/pl.u-6mo4ayKuBqYYXWj")
+
+                time.sleep(10)
+
+                last_height = driver.execute_script("return document.body.scrollHeight")
+
+                while True:
+                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    time.sleep(SCROLL_PAUSE_TIME)
+                    new_height = driver.execute_script("return document.body.scrollHeight")
+                    if new_height == last_height:
+                        break
+                    last_height = new_height
+
+                soup = BeautifulSoup(driver.page_source, "html.parser")
+
+                song = soup.findAll('div', class_='song-wrapper two-lines')
+
+                dataArr= []
+                for container in song:
+                    SongsObject ={
+                        "name": container.find('div', class_='song-name typography-label').text.replace('\n',''),
+                        "interpret": container.find('div', class_='by-line typography-caption').text.replace('\n','')
+                    }
+                    print(SongsObject)
+                    dataArr.append(SongsObject)
+
+                with open("C://Users/roess/Desktop/Neuer Ordner/Data.json", 'w') as outfile:
+                    json.dump(dataArr, outfile)
+
+            finally:
+                driver.quit()
+        }
+
+        WEBSCRAPER {
+            from bs4 import BeautifulSoup
+            import requests
+
+            url = "https://music.apple.com/de/playlist/for-michi/pl.u-AkAm8qpF2JMMqEo"
+            results = requests.get(url)
+
+            soup = BeautifulSoup(results.text, "html.parser")
+
+            #print(soup.prettify())
+
+            song = soup.findAll('div', class_='song-wrapper two-lines')
+            #print(song)
+
+            for container in song:
+                #name = container.text
+                #print(name)
+                SongsObject ={
+                    "name": container.find('div', class_='song-name typography-label').text,
+                    "interpret": container.find('div', class_='by-line typography-caption').text
+                }
+                print(SongsObject)
+        }
+    }
+
+    POWERSHELL {
+        watcher.ps1
+            ### SET FOLDER TO WATCH + FILES TO WATCH + SUBFOLDERS YES/NO
+            $watcher = New-Object System.IO.FileSystemWatcher
+            $watcher.Path = "D:\temporaer-sicherungen"
+            $watcher.Filter = "*.*"
+            $watcher.IncludeSubdirectories = $false
+            $watcher.EnableRaisingEvents = $true  
+
+        ### DEFINE ACTIONS AFTER AN EVENT IS DETECTED
+            $action = { echo hi
+                    }    
+        ### DECIDE WHICH EVENTS SHOULD BE WATCHED 
+            Register-ObjectEvent $watcher "Created" -Action $action
+            Register-ObjectEvent $watcher "Changed" -Action $action
+            Register-ObjectEvent $watcher "Deleted" -Action $action
+            Register-ObjectEvent $watcher "Renamed" -Action $action
+            while ($true) {sleep 5}
+    }
+]
+
+ADOBE {
+    Stop all adobe przesse
+    Delete OOBE folder in user appData + C ProgrammData
+    Restart adobe
+
+    DEINSTALL
+
+    check services! 
+    to delete Services check registry! 
+    Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+
+    AGMSService
+}
