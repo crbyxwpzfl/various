@@ -9,8 +9,8 @@ import privates
 def pull():
     global branch
     output = subprocess.run(['git', '-c', 'user.name="crbyxwpzfl"', '-c', 'user.email=socials.fl@icloud.com', '-c' , privates.sshcmd,  'pull', 'origin', branch])
-    pullsubs = input('want to (p)ull all submodlues aswell or (n)o ')
-    if pullsubs == "p":
+    pullsubs = input('want to p(u)ll all submodlues aswell or (n)othing ')
+    if pullsubs == "u":
         output = subprocess.run(['git', '-c', privates.sshcmd,  'submodule', 'update', '--init', '--recursive', '--remote'])
 
 def forcepull():
