@@ -7,7 +7,11 @@ import privates
 
 
 def pull():
+    global branch
     output = subprocess.run(['git', '-c', 'user.name="crbyxwpzfl"', '-c', 'user.email=socials.fl@icloud.com', '-c' , privates.sshcmd,  'pull', 'origin', branch])
+    pullsubs = input('want to (p)ull all submodlues aswell or (n)o ')
+    if pullsubs == "p":
+        output = subprocess.run(['git', '-c', privates.sshcmd,  'submodule', 'update', '--init', '--recursive', '--remote'])
 
 def forcepull():
     global branch
@@ -22,6 +26,7 @@ def forcepull():
         print(f"recived \"{savety}\" aborted force pull")
 
 def init():
+    global branch
     branch = input('put in branch name ')
     output = subprocess.run(['git', 'init'])
     output = subprocess.run(['git', 'branch', '-m', branch])
@@ -29,16 +34,20 @@ def init():
     output = subprocess.run(['git', 'remote', 'add', 'origin', f"git@github.com:crbyxwpzfl/{repo}.git"])
 
 def add():
+    global branch
     output = subprocess.run(['git', 'add', '.'])
 
 def commit():
+    global branch
     comitmess = input('enter commit message ')
     output = subprocess.run(['git', '-c', 'user.name="crbyxwpzfl"', '-c', 'user.email=60987359+crbyxwpzfl@users.noreply.github.com', 'commit', '-m', comitmess])
 
 def push():
+    global branch
     output = subprocess.run(['git', '-c', privates.sshcmd, 'push', 'origin', branch])
 
 def forcepush():
+    global branch
     output = subprocess.run(['git', '-c', privates.sshcmd, 'push', 'origin', branch, '--force'])
 
 def status():
