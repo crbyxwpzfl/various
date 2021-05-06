@@ -50,6 +50,12 @@ def forcepush():
     global branch
     output = subprocess.run(['git', '-c', privates.sshcmd, 'push', 'origin', branch, '--force'])
 
+def addsubs():
+    global branch
+    subremote = input('input the submodule ssh remote ')
+    subpath = input('input the submodule path rel to current dir ./')
+    output = subprocess.run(['git', '-c', privates.sshcmd,  'submodule', 'add', subremote, subpath])
+
 def status():
     #print git status and ask what to do
     print()
@@ -66,7 +72,7 @@ def status():
     print(f"branch used for next action -{branch}-")
 
     global frage
-    frage = input('(pull) or (forcepull) or (i)nit or (a)dd or (c)ommit or (p)ush or (f)orcepush or (n)othing ')
+    frage = input('p(u)ll or (i)nit or (a)dd change or (c)ommit or (p)ush or add (s)ubmodule or (n)othing ')
 
     if str(frage) == "pull":
         pull()
@@ -92,9 +98,13 @@ def status():
         push()
         status()
 
-    if str(frage) == "f":
+    if str(frage) == "forcepush":
         forcepush()
         status()
+
+    if str(frage) == "s":
+        addsubs()
+    status()
     
     sys.exit()
 
