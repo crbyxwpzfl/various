@@ -25,3 +25,6 @@
 [submodule "adb"]
 	path = adb
 	url = git@gist.github.com:c913a41e4f77f2ed7b25adeddf44acb9.git
+[submodule "curls"]
+	path = curls
+	url = git@gist.github.com:a15fe3c87293cab5ef5592772fcb1479.git
