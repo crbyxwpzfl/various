@@ -1,5 +1,0 @@
-WINDOWS TO BIGSUR
-
-run ssh-keygen in windows and bigsur to generate .ssh dir
-put win key.pub in .ssh of bigsur
-rename key.pub to authorized_keys
