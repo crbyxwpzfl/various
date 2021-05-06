@@ -10,6 +10,7 @@ def pull():
     output = subprocess.run(['git', '-c', 'user.name="crbyxwpzfl"', '-c', 'user.email=socials.fl@icloud.com', '-c' , privates.sshcmd,  'pull', 'origin', branch])
 
 def forcepull():
+    global branch
     savety = input('all local data will be overwritten to continue enter continue ')
     if savety == "continue":
         output = subprocess.run(['git', 'fetch', '--all'])
