@@ -104,7 +104,7 @@ def status():
 
     if str(frage) == "s":
         addsubs()
-    status()
+        status()
     
     sys.exit()
 
