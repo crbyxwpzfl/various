@@ -5,4 +5,4 @@ in `path\to\private\privates.py` set `gitprogramm` `sshprogramm` `sshkey`
 ## putty
 putty stores sessions in registry
 `regedit /e "%USERPROFILE%\Desktop\putty.reg" HKEY_CURRENT_USER\Software\SimonTatham` to export putty session and settings to desktop<br>
-
+for gloabel use append `path\to\gists\ssh\` to `PATH` env var 
