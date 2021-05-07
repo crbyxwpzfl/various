@@ -1,6 +1,6 @@
 ## git.py dependencies
-change `path\to\privates.py`, with `sshcmd` variable, inside `git.py`
-add `path\to\gists` to `PATH` env variable for global putty<br>
+set sys env `privates` with value `path\to\private` for git.py to `import privates`<br>
+in `path\to\private\privates.py` set `gitprogramm` `sshprogramm` `sshkey`
 
 ## putty
 putty stores sessions in registry
