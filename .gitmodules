@@ -37,3 +37,6 @@
 [submodule "windows"]
 	path = windows
 	url = git@gist.github.com:c28933f9ac23911d998def0fdbad8f36.git
+[submodule "win-pythons"]
+	path = win-pythons
+	url = git@gist.github.com:dfb322b19f6b1a42819f37b29b7543f9.git
