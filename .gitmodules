@@ -1,9 +1,6 @@
 [submodule "userChrome"]
 	path = userChrome
 	url = git@gist.github.com:a2ba14e8fbf58d32e0ac54feb1feadd0.git
-[submodule "portableff"]
-	path = portableff
-	url = git@gist.github.com:0571c7e228f6c3a058578962c9dd2a94.git
 [submodule "virtualbox"]
 	path = virtualbox
 	url = git@gist.github.com:be27c7fed20ab80ff55f62b68a95fbbc.git
