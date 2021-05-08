@@ -7,9 +7,6 @@
 [submodule "virtualbox"]
 	path = virtualbox
 	url = git@gist.github.com:be27c7fed20ab80ff55f62b68a95fbbc.git
-[submodule "initvim"]
-	path = initvim
-	url = git@gist.github.com:322ad5225cbffe799a78a37e896197a4.git
 [submodule "ambilight"]
 	path = ambilight
 	url = git@gist.github.com:bd6ddc7a020df0f902faa41c4169f89e.git
