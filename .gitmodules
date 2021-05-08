@@ -43,3 +43,6 @@
 [submodule "pi-pythons"]
 	path = pi-pythons
 	url = git@gist.github.com:fa59efdaf4693e059a9aa5aabab77731.git
+[submodule "nvim"]
+	path = nvim
+	url = git@gist.github.com:322ad5225cbffe799a78a37e896197a4.git
